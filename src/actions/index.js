@@ -9,8 +9,8 @@ import { getRequest } from "../helpers/getRequestHelper";
 
 export const performGoogleSearch = (query, page = 1, items_per_page = 10) => {
   return (dispatch) => {
-    const key = "AIzaSyC6vqd0kt22ExwoqoXOhCIawp7nOkIY8FU";
-    const cid = "2a0053a2d4dc8fc3f";
+    const key = process.env.REACT_APP_GOOGLE_KEY;
+    const cid = process.env.REACT_APP_GOOGLE_CID;
     const start = (page - 1) * items_per_page;
     const googleAPIUrl = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cid}&start=${start}&q=${query}`;
     const googleAPIParams = {};
@@ -28,8 +28,8 @@ export const performGoogleSearch = (query, page = 1, items_per_page = 10) => {
 
 export const performBingSearch = (query, page = 1, items_per_page = 10) => {
   return (dispatch) => {
-    const key = "1514244b143b413b936a3360dc0d8f39";
-    const cid = "5c08670c-c6d2-4d31-a092-5345bf8ca56b";
+    const key = process.env.REACT_APP_BING_KEY;
+    const cid = process.env.REACT_APP_BING_CID;
     const offset = (page - 1) * items_per_page;
     const bingAPIUrl = `https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search?customconfig=${cid}&q=${query}&offset=${offset}`;
     const bingAPIParams = { headers: { "Ocp-Apim-Subscription-Key": key } };
